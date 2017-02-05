@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+
+    <!-- Import main.css stylesheet -->
+    <link type="text/css" rel="stylesheet" href="assets/css/main.css">
+    
+    <!-- Import jQuery.js script -->
+    <script src="assets/js/jquery-3.1.1.min.js"></script>
+    
+    <!-- Load the config and apply appearance settings -->
+    <script src="assets/config/default.conf"></script>
+    <script src="assets/js/get_appearance.js"></script>
+    
+    <!-- Include material design font by Google -->
+    <link type="text/css" rel="stylesheet" href="assets/css/material.css">
+
+</head>
+
+<body>
+
+    <div id="loginBox">
+        <!-- Login box header [logo/os name] -->
+        <header>
+            <div class="middle">
+                <!--<img src="assets/img/clout-team.png" class="brand-logo"></img>-->
+                <h1>CloutOS</h1>
+            </div>
+        </header>
+        
+        <!-- Login box login form -->
+        <main>
+            
+        </main>
+        
+        <!-- Login box footer [currently unused -->
+        <footer>
+            
+        </footer>
+    </div>
+    
+    <div id="actionBar">
+        <ul class="widgets-left">
+            <li><a href="#" class="action-link" data-action="shutdown"><i class="material-icons">power_settings_new</i> Shutdown</a></li>
+            <li><a href="#" class="action-link" data-action="restart"><i class="material-icons">cached</i> Restart</a></li>
+            <li><a href="#" class="action-link" data-action="suspend"><i class="material-icons">play_for_work</i> Suspend</a></li>
+            <li><a href="#" class="action-link" data-action="hibernate"><i class="material-icons">settings_power</i> Hibernate</a></li>
+        </ul>
+        
+        <ul class="widgets-right">
+            <li><p class="clock"></p></li>
+        </ul>
+    </div>
+    
+    <!-- Import widgets -->
+    <script src="widgets/clock.js"></script>
+    
+    <!-- Include the login script -->
+    <script src="assets/js/do_login.js"></script>
+    
+    <!-- Import main login scripts -->
+    <script src="assets/js/main.js"></script>
+    
+</body>
+</html>

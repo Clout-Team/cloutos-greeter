@@ -1,0 +1,106 @@
+/* Import the default 'Roboto' font family */
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  src:  local('Roboto'), local('Roboto-Regular'), url(../fonts/Roboto-Regular.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+
+/* Set general page styles */
+html, body {
+    /* Fill document height and width */
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    
+    /* Fix center with no repeat */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* General styles for the action bar (bottom bar) */
+#actionBar {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+
+#actionBar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#actionBar ul.widgets-left {
+    position: absolute;
+    left: 20px;
+}
+
+#actionBar ul.widgets-right {
+    position: absolute;
+    right: 0;
+}
+
+#actionBar ul li {
+    padding: 0;
+    margin: 0;
+    display: block;
+    float: left;
+}
+
+/* Action Bar Link Styles */
+.widgets-left .action-link, .widgets-right .clock {
+    font-weight: 400;
+    text-decoration: none;
+    padding-right: 20px;
+}
+
+/* Widget styles */
+p.clock {
+    padding: 0;
+    margin: 0;
+    cursor: default;
+}
+
+
+/* Main box code */
+#loginBox {
+    display: block;
+    position: fixed;
+    border-radius: 5px;
+    width: 400px;
+    height: 500px;
+    margin: auto auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+header .middle {
+    display: inline-block;
+    margin: 20px auto;
+    position: relative;
+}
+
+header h1 {
+    color: #FFF;
+    float: left;
+    display: block;
+    text-align: center;
+
+}
+
+/* Header brand logo */
+header .brand-logo {
+    height: 75px;
+    border-radius: 100px;
+    border: 2px solid #FFF;
+    float: left;
+    margin-right: 20px;
+}
