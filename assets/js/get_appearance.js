@@ -7,6 +7,12 @@ $(document).ready(function(){
     
     // Set login box styles
     $("#loginBox").css("background-color", cloutosGreeter.loginBox.backgroundColor);
+    $("main p, main h1").css("color", cloutosGreeter.loginBox.foregroundColor);
+    
+    if(!cloutosGreeter.loginBox.alignCenter){
+        $("main input, main p").css("text-align", "left");
+        $("main p").css("padding-left", "20px");
+    }
     
     // Set action bar styles
     $("#actionBar").css("height", cloutosGreeter.actionBar.height);

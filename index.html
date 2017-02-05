@@ -24,13 +24,32 @@
         <header>
             <div class="middle">
                 <!--<img src="assets/img/clout-team.png" class="brand-logo"></img>-->
-                <h1>CloutOS</h1>
+                <h1 id="brandText">CloutOS</h1>
             </div>
         </header>
         
         <!-- Login box login form -->
         <main>
-            
+            <form id="loginForm">
+                <p class="info" id="message">Please enter your login details to continue.</p>
+                
+                <div class="group">
+                    <input type="text" name="username" id="username" autocomplete="off" autocorrect="false" autocapitalize="off" required></input>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label for="username">Username</label>
+                </group>
+                <div class="group">
+                    <input type="password" name="password" id="password" autocomplete="off" autocorrect="false" autocapitalize="off" required></input>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label for="password">Password</label>
+                </group>
+                
+                <br>
+                
+                <button class="submit-login-form btn"><span>Log In</span></button>
+            <form>
         </main>
         
         <!-- Login box footer [currently unused -->

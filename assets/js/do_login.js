@@ -17,6 +17,9 @@ function show_prompt(text, type){
  */
 function show_message(text, type){
     // type is either "error" or "info"
+    $("#message").html(text);
+    $("#message").removeClass();
+    $("#message").addClass(type);
 }
  
 /*
@@ -29,12 +32,17 @@ function authentication_complete(){
         //authentication was successful
         lightdm.start_session_sync();
     }else{
-        //authentication wasn't successful
+        //authentication wasn't 
+        show_message("It seems you've got something wrong...", "error");
     }
 }
         
 function autologin_timer_expired(){
     /* Does nothing. */
+}
+
+function clear_messages(){
+    show_message("Please enter your login details to continue.", "info");
 }
         
 /***********************************************************************/
@@ -55,4 +63,11 @@ function doSuspend(){
 
 function doHibernate(){
     lightdm.hibernate();
+}
+
+function doLogin(username, password){
+    clear_messages();
+    show_message("Authenticating...", "info");
+    lightdm.authenticate(username);
+    lightdm.respond(password);
 }
