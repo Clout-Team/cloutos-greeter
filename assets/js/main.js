@@ -47,3 +47,30 @@ $("#loginForm").submit(function(event){
     
     return false;
 });
+
+function updateUserImage(){
+    var user = lightdm.users.filter(function( obj ) {
+        return obj.name == $("#username").val();
+    })[0];
+    
+    
+    
+    if(user.image != ""){
+        $("#profileImage").attr('src', user.image);
+    }else{
+        $("#profileImage").attr('src', "assets/img/ui/unknownUser.png");
+    }
+}
+
+$(document).ready(function(){
+    var user;
+    for(user in lightdm.users){
+        $("#username").append('<option>' + lightdm.users[user].name + "</option>");
+    }
+    
+    updateUserImage();
+});
+
+$("#username").change(function(){
+    updateUserImage();
+});

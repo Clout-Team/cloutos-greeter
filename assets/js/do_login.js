@@ -1,3 +1,7 @@
+/* GLOBAL VARIABLES */
+var passwd;
+
+
 /***********************************************************************/
 /*                             LightDM Callbacks                       */
 /***********************************************************************/
@@ -8,6 +12,9 @@
  */
 function show_prompt(text, type){
     // type is either "text" or "password"
+	if(type == "password" || text.toLowerCase().includes("password")){
+		lightdm.respond(passwd);
+	}
 }
 
 /*
@@ -21,6 +28,15 @@ function show_message(text, type){
     $("#message").removeClass();
     $("#message").addClass(type);
 }
+
+/*
+ * show_error callback.
+ * This tells the application to show an error message to the user.
+ * It's a dummy function. It just calls show_message
+ */
+function show_error(text){
+    show_message(text, "error");
+}
  
 /*
  *  authentication_complete callback
@@ -28,12 +44,24 @@ function show_message(text, type){
  *  and either work or don't work
  */
 function authentication_complete(){
-    if(lighdm.is_authenticated){
+    if(lightdm.is_authenticated){
         //authentication was successful
-        lightdm.start_session_sync();
+        
+        var user = lightdm.users.filter(function( obj ) {
+            return obj.name == lightdm.authentication_user;
+        });
+        
+        try {
+            lightdm.login(
+                lightdm.authentication_user,
+                user.session
+            );
+        }catch(err){
+            show_error("Application Error: -02 : " + err);
+        }
     }else{
         //authentication wasn't 
-        show_message("It seems you've got something wrong...", "error");
+        show_message("It seems you've entered the wrong password...", "error");
     }
 }
         
@@ -49,25 +77,43 @@ function clear_messages(){
 /*                         Application Callbacks                       */
 /***********************************************************************/
 
+function debug(message){
+    $("#debugBox").append('<p style="line-">' + message + "</p>");
+}
+
 function doShutdown(){
-    lightdm.shutdown();
+    if(lightdm.can_shutdown){
+        lightdm.shutdown();
+    }
 }
 
 function doRestart(){
-    lightdm.restart();
+    if(lightdm.can_restart){
+        lightdm.restart();
+    }
 }
 
 function doSuspend(){
-    lightdm.suspend();
+    if(lightdm.can_suspend){
+        lightdm.suspend();
+    }
 }
 
 function doHibernate(){
-    lightdm.hibernate();
+    if(lightdm.can_hibernate){
+        lightdm.hibernate();
+    }
 }
 
 function doLogin(username, password){
+    passwd = password;
     clear_messages();
+    lightdm.cancel_timed_login();
     show_message("Authenticating...", "info");
-    lightdm.authenticate(username);
-    lightdm.respond(password);
+    try {
+        lightdm.start_authentication(username);
+    } catch(err) {
+        lightdm.cancel_authentication();
+        lightdm.start_authentication(username);
+    }
 }

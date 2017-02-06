@@ -33,11 +33,9 @@
             <form id="loginForm">
                 <p class="info" id="message">Please enter your login details to continue.</p>
                 
-                <div class="group">
-                    <input type="text" name="username" id="username" autocomplete="off" autocorrect="false" autocapitalize="off" required></input>
-                    <span class="highlight"></span>
-                    <span class="bar"></span>
-                    <label for="username">Username</label>
+                <div class="group" id="usernameBox">
+                    <img id="profileImage"></img>
+                    <select name="username" id="username"></select>
                 </group>
                 <div class="group">
                     <input type="password" name="password" id="password" autocomplete="off" autocorrect="false" autocapitalize="off" required></input>
@@ -52,7 +50,7 @@
             <form>
         </main>
         
-        <!-- Login box footer [currently unused -->
+        <!-- Login box footer [currently unused]l -->
         <footer>
             
         </footer>
@@ -60,10 +58,10 @@
     
     <div id="actionBar">
         <ul class="widgets-left">
-            <li><a href="#" class="action-link" data-action="shutdown"><i class="material-icons">power_settings_new</i> Shutdown</a></li>
-            <li><a href="#" class="action-link" data-action="restart"><i class="material-icons">cached</i> Restart</a></li>
-            <li><a href="#" class="action-link" data-action="suspend"><i class="material-icons">play_for_work</i> Suspend</a></li>
-            <li><a href="#" class="action-link" data-action="hibernate"><i class="material-icons">settings_power</i> Hibernate</a></li>
+            <li><a href="#" class="action-link" data-action="shutdown"><img src="assets/img/ui/shutdown.png"></img> Shutdown</a></li>
+            <li><a href="#" class="action-link" data-action="restart"><img src="assets/img/ui/restart.png"></img> Restart</a></li>
+            <li><a href="#" class="action-link" data-action="suspend"><img src="assets/img/ui/suspend.png"></img> Suspend</a></li>
+            <li><a href="#" class="action-link" data-action="hibernate"><img src="assets/img/ui/hibernate.png"></img> Hibernate</a></li>
         </ul>
         
         <ul class="widgets-right">
@@ -79,6 +77,9 @@
     
     <!-- Import main login scripts -->
     <script src="assets/js/main.js"></script>
+    
+    <!-- Import mock.js script for in-browser testing -->
+    <script src="assets/js/mock.js"></script>
     
 </body>
 </html>
