@@ -55,7 +55,7 @@ function updateUserImage(){
     
     
     
-    if(user.image != ""){
+    if(user != undefined && user.image != ""){
         $("#profileImage").attr('src', user.image);
     }else{
         $("#profileImage").attr('src', "assets/img/ui/unknownUser.png");
@@ -65,12 +65,24 @@ function updateUserImage(){
 $(document).ready(function(){
     var user;
     for(user in lightdm.users){
-        $("#username").append('<option>' + lightdm.users[user].name + "</option>");
+        $("#username").prepend('<option>' + lightdm.users[user].name + "</option>");
     }
+    
+    $("#username").val("Choose a user...");
     
     updateUserImage();
 });
 
 $("#username").change(function(){
     updateUserImage();
+    
+    if($("#username").val() == "Other..."){
+        //Make it a textbox
+        $("#usernameBox").replaceWith( '<div class="group">' +
+                    '<input type="username" name="username" id="username" autocomplete="off" autocorrect="false" autocapitalize="off" required></input>' +
+                    '<span class="highlight"></span>' +
+                    '<span class="bar"></span>' +
+                    '<label for="username">Username</label>' +
+        '</div>' );
+    }
 });

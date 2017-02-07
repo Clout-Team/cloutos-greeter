@@ -49,7 +49,7 @@ function authentication_complete(){
         
         var user = lightdm.users.filter(function( obj ) {
             return obj.name == lightdm.authentication_user;
-        });
+        })[0];
         
         try {
             lightdm.login(

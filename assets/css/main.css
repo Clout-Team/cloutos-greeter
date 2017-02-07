@@ -331,6 +331,12 @@ h2 {
     margin-right: 4px;
 }
 
+#usernameBox {
+    width: 300px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
 #usernameBox select {
     display: block;
     height: 42px;
@@ -340,11 +346,6 @@ h2 {
     background: url(../img/ui/down_arrow.png) no-repeat #ddd;
     -webkit-appearance: none;
     background-position: calc(100% - 10px);
-}
-
-#usernameBox select option {
-    padding-top: 5px;
-    padding-bottom: 5px;
 }
 
 #profileImage {
