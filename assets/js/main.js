@@ -1,3 +1,5 @@
+lightdm.autologin_guest = false;
+
 $(".action-link").click(function(event){
     event.preventDefault();
     var action = this.dataset.action;
@@ -65,16 +67,26 @@ function updateUserImage(){
 $(document).ready(function(){
     var user;
     for(user in lightdm.users){
-        $("#username").prepend('<option>' + lightdm.users[user].name + "</option>");
+        $("#username").append('<option>' + lightdm.users[user].name + "</option>");
     }
     
-    $("#username").val("Choose a user...");
+    if(lightdm.has_guest_account){
+        $("#username").append("<option>Guest User</option>");
+    }
+    
+    $("#username").append("<option>Other...</option>");
+    
+    //$("#username").val("Choose a user...");
     
     updateUserImage();
 });
 
 $("#username").change(function(){
     updateUserImage();
+    
+    if($("#username").val() != "Guest User"){
+        $("#passwordBox").removeClass("invisible");
+    }
     
     if($("#username").val() == "Other..."){
         //Make it a textbox
@@ -84,5 +96,7 @@ $("#username").change(function(){
                     '<span class="bar"></span>' +
                     '<label for="username">Username</label>' +
         '</div>' );
+    }else if($("#username").val() == "Guest User"){
+        $("#passwordBox").addClass("invisible");
     }
 });

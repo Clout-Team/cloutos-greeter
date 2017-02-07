@@ -52,10 +52,16 @@ function authentication_complete(){
         })[0];
         
         try {
-            lightdm.login(
-                lightdm.authentication_user,
-                user.session
-            );
+            if(user != undefined){
+                lightdm.login(
+                    lightdm.authentication_user,
+                    user.session
+                );
+            }else{
+                lightdm.autologin_guest = true;
+                lightdm.autologin_timeout = 1;
+                lightdm.start_session();
+            }
         }catch(err){
             show_error("Application Error: -02 : " + err);
         }
@@ -106,14 +112,19 @@ function doHibernate(){
 }
 
 function doLogin(username, password){
-    passwd = password;
-    clear_messages();
-    lightdm.cancel_timed_login();
-    show_message("Authenticating...", "info");
-    try {
-        lightdm.start_authentication(username);
-    } catch(err) {
-        lightdm.cancel_authentication();
-        lightdm.start_authentication(username);
+    if(username != "Guest User"){
+        passwd = password;
+        clear_messages();
+        lightdm.cancel_timed_login();
+        show_message("Authenticating...", "info");
+        try {
+            lightdm.start_authentication(username);
+        } catch(err) {
+            lightdm.cancel_authentication();
+            lightdm.start_authentication(username);
+        }
+    }else{
+        //lightdm.authenticate_as_guest();
+        show_error("Guest Accounts are not yet supported by CloutOS");
     }
 }
